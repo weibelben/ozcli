@@ -23,7 +23,7 @@ func init() {
 
 func setWorkingDirectory() {
 	path := "."
-	log.info("setting working direcory")
+	log.Info("setting working direcory")
 	if err := os.Chdir(path); err != nil {
 		log.WithError(err).Fatalf(
 			"could not set ozcli's working directory to %s", path)
@@ -38,5 +38,5 @@ func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		log.WithError(err).Fatal("Failed to run ozcli")
 	}
-	log.info("executing")
+	log.Info("executing")
 }
