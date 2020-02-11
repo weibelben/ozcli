@@ -1,7 +1,6 @@
 package ozcli
 
 import (
-	"fmt"
 	"os/exec"
 
 	log "github.com/sirupsen/logrus"
@@ -23,7 +22,7 @@ var k8sTunnelCmd = &cobra.Command{
 }
 
 func createK8sTunnel() {
-	fmt.Println("Creating tunnel to k8s api...")
+	Log.Info("Creating tunnel to k8s api...")
 	path := "./infrastructure/dev/k8s/make-tunnel.sh"
 	makeTunnelCmd := exec.Command(path, "k8sapi")
 
