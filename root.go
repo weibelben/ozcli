@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const defaultPath = "../../"
+const defaultPath = "../../../"
 
 var RootPath string
 
