@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	rootOzcliPath = "../"
+	rootOzcliPath = ".."
 )
 
 func init() {
