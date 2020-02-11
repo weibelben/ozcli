@@ -27,6 +27,6 @@ func createK8sTunnel() {
 	err := makeTunnelCmd.Run()
 	log.Info("tunneling...")
 	if err != nil {
-		log.Error("Failed to create tunnel to k8s api.")
+		log.WithError(err).Error("Failed to create tunnel to k8s api.")
 	}
 }
