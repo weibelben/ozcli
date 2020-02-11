@@ -11,6 +11,8 @@ import (
 func init() {
 	rootCmd.AddCommand(k8sTunnelCmd)
 	rootCmd.AddCommand(socksProxyCmd)
+	rootCmd.AddCommand(portForwardVaultCmd)
+	rootCmd.AddCommand(portForwardCeleriumCmd)
 }
 
 var k8sTunnelCmd = &cobra.Command{
