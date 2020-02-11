@@ -1,8 +1,8 @@
 package ozcli
 
 import (
-	"os/exec"
 	"os"
+	"os/exec"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -27,6 +27,7 @@ func createK8sTunnel() {
 	path := "./infrastructure/dev/k8s/make-tunnel.sh"
 	makeTunnelCmd := exec.Command(path, "k8sapi")	
 	makeTunnelCmd.Stdout = os.Stdout
+	makeTunnelCmd.Stderr = os.Stderr
 
 	err := makeTunnelCmd.Start()
 	if err != nil {
