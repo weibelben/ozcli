@@ -26,6 +26,9 @@ var k8sTunnelCmd = &cobra.Command{
 }
 
 func createK8sTunnel() {
+	dir, err := os.Getwd()
+	fmt.Println(dir)
+	
 	log.Info("Creating tunnel to k8s api...")
 	path := fmt.Sprintf("%sinfrastructure/dev/k8s/make-tunnel.sh", RootOzPath)
 
