@@ -7,6 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const defaultPath = "../"
+
+var RootPath string
+
 var rootCmd = &cobra.Command{
 	Use:   "ozcli",
 	Short: "OzCLI is your portal to Oz",
@@ -19,13 +23,16 @@ var rootCmd = &cobra.Command{
 
 func init() {
 	cobra.OnInitialize(setWorkingDirectory)
+
+	pathHelp := "path to run the hopcli command in"
+	rootCmd.PersistentFlags().StringVar(&RootPath, "path", defaultPath, pathHelp)
 }
 
 func setWorkingDirectory() {
-	path := "."
+	RootPath = "."
 	if err := os.Chdir(path); err != nil {
 		log.WithError(err).Fatalf(
-			"could not set ozcli's working directory to %s", path)
+			"could not set ozcli's working directory to %s", RootPath)
 	}
 }
 
