@@ -10,6 +10,7 @@ import (
 
 func init() {
 	rootCmd.AddCommand(k8sTunnelCmd)
+	rootCmd.AddCommand(socksProxyCmd)
 }
 
 var k8sTunnelCmd = &cobra.Command{
@@ -22,11 +23,59 @@ var k8sTunnelCmd = &cobra.Command{
 	},
 }
 
+var socksProxyCmd = &cobra.Command{
+	Use:   "socks-proxy",
+	Short: "Create a SOCKS proxy",
+	Long:  "Create a SOCKS proxy.",
+	Run: func(cmd *cobra.Command, args []string) {
+		createSocksProxy()
+	},
+}
+
+var portForwardVaultCmd = &cobra.Command{
+	Use:   "port-forward-vault",
+	Short: "Port forward to vault",
+	Long:  "Port forward to vault allowing you to access its web UI.",
+	Run: func(cmd *cobra.Command, args []string) {
+		portForwardVault()
+	},
+}
+
+var portForwardCeleriumCmd = &cobra.Command{
+	Use:   "port-forward-celerium",
+	Short: "Port forward to celerium",
+	Long:  "Port forward to celerium allowing you to access its web UI and the db.",
+	Run: func(cmd *cobra.Command, args []string) {
+		portForwardCelerium()
+	},
+}
+
 func createK8sTunnel() {
 	log.Info("Creating tunnel to k8s api...")
 	path := "./infrastructure/dev/k8s/make-tunnel.sh"
 
 	runBashScript(path, "k8sapi")
+}
+
+func createSocksProxy() {
+	log.Info("Creating SOCKS proxy...")
+	path := "./infrastructure/dev/k8s/make-tunnel.sh"
+
+	runBashScript(path, "socks")
+}
+
+func portForwardVault() {
+	log.Info("Port Forwarding to Vault...")
+	path := "./infrastructure/dev/k8s/port-forward.sh"
+
+	runBashScript(path, "vault")
+}
+
+func portForwardCelerium() {
+	log.Info("Port Forwarding to Celerium...")
+	path := "./infrastructure/dev/k8s/port-forward.sh"
+
+	runBashScript(path, "celerium")
 }
 
 func runBashScript(path string, arg string) {
