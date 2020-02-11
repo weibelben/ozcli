@@ -1,2 +1,2 @@
-# ozcli
+ozcli
 here it is
