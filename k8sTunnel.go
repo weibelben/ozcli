@@ -35,7 +35,10 @@ func createK8sTunnel() {
 	log.Info(dir)
 	
 	log.Info("Creating tunnel to k8s api...")
-	makeTunnelCmd := exec.Command(fmt.Sprintf("bash %s/infrastructure/dev/k8s/make-tunnel.sh k8sapi", rootOzcliPath))
+	path := fmt.Sprintf("%s/infrastructure/dev/k8s/make-tunnel.sh", rootOzcliPath)
+	args := ["k8sapi"]
+
+	makeTunnelCmd := exec.Command(path, args)
 	err = makeTunnelCmd.Start()
 	if err != nil {
 		log.WithError(err).Error("Failed to run make-tunnel script.")
