@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	rootOzcliPath = ".."
+	rootOzcliPath = "../"
 )
 
 func init() {
@@ -30,12 +30,9 @@ var k8sTunnelCmd = &cobra.Command{
 	},
 }
 
-func createK8sTunnel() {
-	dir, err := os.Getwd()
-	log.Info(dir)
-	
+func createK8sTunnel() {	
 	log.Info("Creating tunnel to k8s api...")
-	path := fmt.Sprintf("%s/infrastructure/dev/k8s/make-tunnel.sh", rootOzcliPath)
+	path := fmt.Sprintf("%sinfrastructure/dev/k8s/make-tunnel.sh", rootOzcliPath)
 
 	makeTunnelCmd := exec.Command(path, "k8sapi")
 	err = makeTunnelCmd.Start()
