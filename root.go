@@ -9,7 +9,7 @@ import (
 
 const defaultPath = "../"
 
-var RootPath string
+var RootOzPath string
 
 var rootCmd = &cobra.Command{
 	Use:   "ozcli",
@@ -24,15 +24,15 @@ var rootCmd = &cobra.Command{
 func init() {
 	cobra.OnInitialize(setWorkingDirectory)
 
-	pathHelp := "path to run the hopcli command in"
-	rootCmd.PersistentFlags().StringVar(&RootPath, "path", defaultPath, pathHelp)
+	pathHelp := "path to run the ozcli command in"
+	rootCmd.PersistentFlags().StringVar(&RootOzPath, "path", defaultPath, pathHelp)
 }
 
 func setWorkingDirectory() {
-	RootPath = "."
-	if err := os.Chdir(RootPath); err != nil {
+	RootOzPath = "../"
+	if err := os.Chdir(RootOzPath); err != nil {
 		log.WithError(err).Fatalf(
-			"could not set ozcli's working directory to %s", RootPath)
+			"could not set ozcli's working directory to %s", RootOzPath)
 	}
 }
 
