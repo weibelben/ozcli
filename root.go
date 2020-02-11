@@ -30,7 +30,7 @@ func init() {
 
 func setWorkingDirectory() {
 	RootPath = "."
-	if err := os.Chdir(path); err != nil {
+	if err := os.Chdir(RootPath); err != nil {
 		log.WithError(err).Fatalf(
 			"could not set ozcli's working directory to %s", RootPath)
 	}
