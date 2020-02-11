@@ -27,6 +27,7 @@ func createK8sTunnel() {
 	err := makeTunnelCmd.Start()
 	if err != nil {
 		log.WithError(err).Error("Failed to run make-tunnel script.")
+		return
 	}
 	err = makeTunnelCmd.Wait()
 	if err != nil {
