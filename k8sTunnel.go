@@ -10,13 +10,13 @@ import (
 )
 
 var (
-	path = "../"
+	rootOzcliPath = "../"
 )
 
 func init() {
 	rootCmd.AddCommand(k8sTunnelCmd)
 	
-	k8sTunnelCmd.Flags().StringVar(&RootOzcliPath, "path", path,
+	k8sTunnelCmd.Flags().StringVar(&rootOzcliPath, "path", rootOzcliPath,
 		"path to run the tunnel command in")
 }
 
@@ -35,7 +35,7 @@ func createK8sTunnel() {
 	log.Info(dir)
 	
 	log.Info("Creating tunnel to k8s api...")
-	makeTunnelCmd := exec.Command(fmt.Sprintf("bash %s/infrastructure/dev/k8s/make-tunnel.sh k8sapi", RootPath))
+	makeTunnelCmd := exec.Command(fmt.Sprintf("bash %s/infrastructure/dev/k8s/make-tunnel.sh k8sapi", rootOzcliPath))
 	err = makeTunnelCmd.Start()
 	if err != nil {
 		log.WithError(err).Error("Failed to run make-tunnel script.")
