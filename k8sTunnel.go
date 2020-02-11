@@ -24,9 +24,12 @@ var k8sTunnelCmd = &cobra.Command{
 func createK8sTunnel() {
 	log.Info("Creating tunnel to k8s api...")
 	makeTunnelCmd := exec.Command("bash ../infrastructure/dev/k8s/make-tunnel.sh")
-	err := makeTunnelCmd.Run()
-	log.Info("tunneling...")
+	err := makeTunnelCmd.Start()
 	if err != nil {
-		log.WithError(err).Info("Failed to create tunnel to k8s api.")
+		log.WithError(err).Error("Failed to run make-tunnel script.")
+	}
+	err = makeTunnelCmd.Wait()
+	if err != nil {
+		log.WithError(err).Error("Failed to create tunnel to k8s api.")
 	}
 }
