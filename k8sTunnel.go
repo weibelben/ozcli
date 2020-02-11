@@ -85,7 +85,7 @@ func runBashScript(path string, arg string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(dir)
+	log.Info(dir)
 
 	makeTunnelCmd := exec.Command(path, arg)
 	makeTunnelCmd.Stdout = os.Stdout
