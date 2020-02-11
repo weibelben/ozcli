@@ -25,6 +25,7 @@ func createK8sTunnel() {
 	log.Info("Creating tunnel to k8s api...")
 	makeTunnelCmd := exec.Command("./infrastructure/dev/k8s/make-tunnel.sh")
 	err := makeTunnelCmd.Run()
+	log.Info("tunneling...")
 	if err != nil {
 		log.Error("Failed to create tunnel to k8s api.")
 	}
