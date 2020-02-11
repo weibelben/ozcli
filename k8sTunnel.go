@@ -9,8 +9,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	path = "../"
+)
+
 func init() {
 	rootCmd.AddCommand(k8sTunnelCmd)
+	
+	k8sTunnelCmd.Flags().StringVar(&RootOzcliPath, "path", path,
+		"path to run the tunnel command in")
 }
 
 var k8sTunnelCmd = &cobra.Command{
