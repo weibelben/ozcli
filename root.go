@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const defaultPath = "../"
+const defaultPath = "."
 
 var rootOzPath string
 
@@ -33,13 +33,6 @@ func setWorkingDirectory() {
 	if rootOzPath == "" {
 		log.Fatal("ROOT_DIR not defined. Have you sourced a config?")
 	}
-
-	dir, err := os.Getwd()
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.Info(dir)
-	log.Info("root oz path = " + rootOzPath)
 
 	if err := os.Chdir(rootOzPath); err != nil {
 		log.WithError(err).Fatalf(
