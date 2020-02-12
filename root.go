@@ -29,7 +29,7 @@ func init() {
 }
 
 func setWorkingDirectory() {
-	rootOzPath = oz.Getenv("ROOT_DIR")
+	rootOzPath = os.Getenv("ROOT_DIR")
 	if rootOzPath == "" {
 		log.Fatal("ROOT_DIR not defined. Have you sourced a config?")
 	}
