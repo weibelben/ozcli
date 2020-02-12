@@ -81,17 +81,11 @@ func portForwardCelerium() {
 }
 
 func runBashScript(path string, arg string) {
-	dir, err := os.Getwd()
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.Info(dir)
-
 	makeTunnelCmd := exec.Command(path, arg)
 	makeTunnelCmd.Stdout = os.Stdout
 	makeTunnelCmd.Stderr = os.Stderr
 
-	err = makeTunnelCmd.Start()
+	err := makeTunnelCmd.Start()
 	if err != nil {
 		log.WithError(err).Fatalf("Failed to run %s.", path)
 	}
