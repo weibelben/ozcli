@@ -29,7 +29,11 @@ func init() {
 }
 
 func setWorkingDirectory() {
-	rootOzPath = "../"
+	rootOzPath = oz.Getenv("ROOT_DIR")
+	if rootOzPath == "" {
+		log.Fatal("ROOT_DIR not defined. Have you sourced a config?")
+	}
+
 	if err := os.Chdir(rootOzPath); err != nil {
 		log.WithError(err).Fatalf(
 			"could not set ozcli's working directory to %s", rootOzPath)
